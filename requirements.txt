@@ -1,0 +1,12 @@
+# Runtime dependencies of the fastapi addon (install into the Odoo 20 venv).
+# Lower bounds come from the addon manifest; the versions in the comments are
+# the ones this repo was verified with on 2026-09-28 (Python 3.12).
+fastapi>=0.110.0              # 0.141.1 (pulls starlette 1.6.0, pydantic 2.13.4)
+python-multipart              # 0.0.32
+ujson                         # 5.13.0
+a2wsgi>=1.10.6                # 1.10.10
+parse-accept-language         # 0.1.2
+
+# Only needed to run the test suites: starlette 1.6's TestClient imports
+# httpx2, not httpx.
+httpx2                        # 2.13.1

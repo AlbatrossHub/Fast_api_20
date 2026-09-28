@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- The user the app runs as before authentication. It only holds the
+             runner group: read its own user, its own endpoint, and the
+             authenticated partner. Each route then works in the environment
+             its dependencies return (see routers/starter.py). -->
+        <record id="starter_api_runner" model="res.users" context="{'no_reset_password': True}">
+            <field name="name">Starter API Runner</field>
+            <field name="login">starter_api_runner</field>
+            <field name="group_ids" eval="[Command.set([ref('fastapi.group_fastapi_endpoint_runner')])]"/>
+        </record>
+
+        <record id="starter_endpoint" model="fastapi.endpoint">
+            <field name="name">Starter API</field>
+            <field name="app">starter</field>
+            <field name="root_path">/api/starter/v1</field>
+            <field name="user_id" ref="starter_api_runner"/>
+        </record>
+    </data>
+</odoo>
